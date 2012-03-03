@@ -1,0 +1,42 @@
+<ste:load name="/systemtemplates/master.html" />
+<ste:block name="content">
+	<ste:default_error />
+	<ste:default_success />
+	
+	<h3>General settings</h3>
+	<form action="$rel_path_to_pluginpage" method="POST" accept-charset="UTF-8">
+		<p><strong>Mail From address:</strong> <input type="text" name="mail_from" value="<ste:escape>$mail_from</ste:escape>" /></p>
+		<p><input type="submit" name="send_general_settings" /></p>
+	</form>
+	
+	<h3>Receivers</h3>
+	<form action="$rel_path_to_pluginpage" method="POST" accept-charset="UTF-8">
+		<p><strong>New receiver:</strong> <input type="text" name="new_recv" /> <input type="submit" name="add_new_recv" value="Add" /></p>
+	</form>
+	
+	<form action="$rel_path_to_pluginpage" method="POST" accept-charset="UTF-8">
+		<table class="listtab">
+			<thead>
+				<tr>
+					<th>&nbsp;</th>
+					<th>Mailaddress</th>
+				</tr>
+			</thead>
+			<tbody>
+				<ste:foreach array="mail_to" value="recv">
+					<tr>
+						<td><input type="checkbox" name="recvs_multiselect[]" value="<ste:escape>$recv</ste:escape>" /></td>
+						<td><ste:escape>$recv</ste:escape></td>
+					</tr>
+				</ste:foreach>
+			</tbody>
+		</table>
+		<div>
+			<input type="submit" name="delete_recvs" value="Delete" />
+			<select name="really_delete">
+				<option value="no" selected="selected">No</option>
+				<option value="yes">Yes</option>
+			</select>
+		</div>
+	</form>
+</ste:block>
